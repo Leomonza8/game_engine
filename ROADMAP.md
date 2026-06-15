@@ -12,7 +12,7 @@
 
 ## Etapas
 
-- [ ] **1. Janela + loop principal** — GLFW abre janela, trata input básico
+- [x] **1. Janela + loop principal** — GLFW abre janela, trata input básico
 - [ ] **2. Triângulo na tela** — VAO, VBO, shaders GLSL básicos
 - [ ] **3. Abstração de Shader** — classe que lê, compila e usa shaders
 - [ ] **4. Abstração de Mesh/Renderer** — separar dados de geometria do código de render
@@ -27,8 +27,8 @@
 
 ### Concluído
 - Estrutura de pastas criada (`src/`, `include/engine/`, `assets/`, `build/`)
-- CMakeLists.txt configurado para C++20
-- Build e execução funcionando
+- CMakeLists.txt configurado para C++20 com GLFW, GLAD e GLM
+- Etapa 1: janela GLFW + contexto OpenGL 3.3 + loop principal funcionando
 
 ### Em andamento
-- Nada ainda — próximo passo: **Etapa 1 (Janela com GLFW)**
+- Etapa 2: triângulo na tela (VAO, VBO, shaders GLSL)
