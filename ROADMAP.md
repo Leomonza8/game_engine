@@ -13,7 +13,7 @@
 ## Etapas
 
 - [x] **1. Janela + loop principal** — GLFW abre janela, trata input básico
-- [ ] **2. Triângulo na tela** — VAO, VBO, shaders GLSL básicos
+- [x] **2. Triângulo na tela** — VAO, VBO, shaders GLSL básicos
 - [ ] **3. Abstração de Shader** — classe que lê, compila e usa shaders
 - [ ] **4. Abstração de Mesh/Renderer** — separar dados de geometria do código de render
 - [ ] **5. Câmera** — view/projection matrix, movimentação com teclado/mouse
@@ -31,4 +31,4 @@
 - Etapa 1: janela GLFW + contexto OpenGL 3.3 + loop principal funcionando
 
 ### Em andamento
-- Etapa 2: triângulo na tela (VAO, VBO, shaders GLSL)
+- Etapa 3: abstração de Shader (classe C++ que lê, compila e usa shaders)
