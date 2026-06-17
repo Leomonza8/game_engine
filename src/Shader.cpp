@@ -3,6 +3,9 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 Shader::Shader(const char* vertexPath, const char* fragmentPath) {
     std::ifstream vFile(vertexPath);
     std::ifstream fFile(fragmentPath);
@@ -31,7 +34,13 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath) {
     glLinkProgram(id);
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
+    
 }
 void Shader::use(){
         glUseProgram(id);
     }
+
+void Shader::setMat4(const char* name, const glm::mat4& matrix) {
+    GLint location = glGetUniformLocation(id, name);
+    glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
+}
