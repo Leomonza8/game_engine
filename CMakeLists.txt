@@ -33,6 +33,8 @@ target_include_directories(glad PUBLIC external/glad/include)
 # Engine executable
 add_executable(${PROJECT_NAME}
     src/main.cpp
+    src/Shader.hpp
+    src/Shader.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
