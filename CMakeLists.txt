@@ -35,6 +35,7 @@ add_executable(${PROJECT_NAME}
     src/main.cpp
     src/Shader.hpp
     src/Shader.cpp
+    src/Mesh.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
