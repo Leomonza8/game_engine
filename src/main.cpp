@@ -6,10 +6,25 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 // triangulo teste ( pontos)
-float vertices[]{
-    -0.5f,-0.5f,0.0,
-    0.5f, -0.5f, 0.0f,
-    0.0f,  0.5f, 0.0f
+float vertices[] = {
+    // Posições X, Y, Z
+    -0.5f, -0.5f, -0.5f,  0.5f, -0.5f, -0.5f,  0.5f,  0.5f, -0.5f,
+     0.5f,  0.5f, -0.5f, -0.5f,  0.5f, -0.5f, -0.5f, -0.5f, -0.5f,
+
+    -0.5f, -0.5f,  0.5f,  0.5f, -0.5f,  0.5f,  0.5f,  0.5f,  0.5f,
+     0.5f,  0.5f,  0.5f, -0.5f,  0.5f,  0.5f, -0.5f, -0.5f,  0.5f,
+
+    -0.5f,  0.5f,  0.5f, -0.5f,  0.5f, -0.5f, -0.5f, -0.5f, -0.5f,
+    -0.5f, -0.5f, -0.5f, -0.5f, -0.5f,  0.5f, -0.5f,  0.5f,  0.5f,
+
+     0.5f,  0.5f,  0.5f,  0.5f,  0.5f, -0.5f,  0.5f, -0.5f, -0.5f,
+     0.5f, -0.5f, -0.5f,  0.5f, -0.5f,  0.5f,  0.5f,  0.5f,  0.5f,
+
+    -0.5f, -0.5f, -0.5f,  0.5f, -0.5f, -0.5f,  0.5f, -0.5f,  0.5f,
+     0.5f, -0.5f,  0.5f, -0.5f, -0.5f,  0.5f, -0.5f, -0.5f, -0.5f,
+
+    -0.5f,  0.5f, -0.5f,  0.5f,  0.5f, -0.5f,  0.5f,  0.5f,  0.5f,
+     0.5f,  0.5f,  0.5f, -0.5f,  0.5f,  0.5f, -0.5f,  0.5f, -0.5f,
 };
 
 int main() {
@@ -19,7 +34,7 @@ int main() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR,3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);  
 
-    GLFWwindow* window = glfwCreateWindow(800,600,"Game Engine",nullptr,nullptr);
+    GLFWwindow* window = glfwCreateWindow(1920,1080,"Game Engine",nullptr,nullptr);
     if(!window){
         std::cerr << "Falha ao criar janela\n";
         glfwTerminate();
@@ -35,7 +50,7 @@ int main() {
         return -1;
     }
     Shader shader("shaders/vertex.glsl", "shaders/fragment.glsl");
-    Mesh mesh(vertices,3);
+    Mesh mesh(vertices,36);
 
     glEnable(GL_DEPTH_TEST);
 
@@ -46,17 +61,21 @@ int main() {
         // glUseProgram(shaderProgram);
         shader.use();
         glm::mat4 model = glm::mat4(1.0f);
-        glm::mat4 view = glm::lookAt(
-            glm::vec3(2.0f, 2.0f, 2.0f),  // posição da câmera (3 unidades atrás)
-            glm::vec3(0.0f, 0.0f, 0.0f),  // para onde olha (origem)
-            glm::vec3(0.0f, 1.0f, 0.0f)   // "cima" é o eixo Y
-        );
+        float time = (float)glfwGetTime();
+        model = glm::rotate(model,time*glm::radians(50.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+
+        glm::mat4 view= glm::mat4(1.0f);;  
+        view = glm::translate(view, glm::vec3(0.0f, -1.5f, -5.0f));
+        view = glm::rotate(view, glm::radians(25.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+
+        
         glm::mat4 projection = glm::perspective(
             glm::radians(45.0f),  // field of view
             800.0f / 600.0f,      // aspect ratio
             0.1f,                 // near
             100.0f                // far
         );
+        
         shader.setMat4("model", model);
         shader.setMat4("view", view);
         shader.setMat4("projection", projection);
