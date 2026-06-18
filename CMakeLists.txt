@@ -38,6 +38,7 @@ add_executable(${PROJECT_NAME}
     src/Mesh.cpp
     src/camera.hpp
     src/camera.cpp
+    src/stb_image.h
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
@@ -49,4 +50,14 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     glad
     glm::glm
     ${CMAKE_DL_LIBS}
+)
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_SOURCE_DIR}/textures $<TARGET_FILE_DIR:${PROJECT_NAME}>/textures
+)
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_SOURCE_DIR}/shaders $<TARGET_FILE_DIR:${PROJECT_NAME}>/shaders
 )
