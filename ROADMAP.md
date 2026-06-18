@@ -16,7 +16,7 @@
 - [x] **2. Triângulo na tela** — VAO, VBO, shaders GLSL básicos
 - [x] **3. Abstração de Shader** — classe que lê, compila e usa shaders
 - [x] **4. Abstração de Mesh/Renderer** — separar dados de geometria do código de render
-- [ ] **5. Câmera** — view/projection matrix, movimentação com teclado/mouse
+- [x] **5. Câmera** — view/projection matrix, movimentação com teclado/mouse
 - [ ] **6. Carregamento de texturas** — stb_image + UV mapping
 - [ ] **7. Sistema de cenas/entidades** — organizar objetos no mundo
 - [ ] **8. Iluminação básica** — Phong shading (ambient, diffuse, specular)
