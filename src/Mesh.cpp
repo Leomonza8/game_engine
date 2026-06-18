@@ -2,6 +2,7 @@
 #include <glad/glad.h>
 
 Mesh::Mesh(float* vertices,int count){
+    vertexCount = count;
     glGenVertexArrays(1,&VAO);
     glGenBuffers(1,&VBO);
     
@@ -15,7 +16,7 @@ Mesh::Mesh(float* vertices,int count){
 };
 void Mesh::draw(){
     glBindVertexArray(VAO);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, 0, vertexCount);
 }
 
 Mesh::~Mesh(){
