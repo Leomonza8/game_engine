@@ -10,8 +10,8 @@ Camera::Camera(glm::vec3 pos){
     pitch =0.0f;
 }
 
-glm::mat4 Camera::getViewMatrix(){
-    return glm::lookAt(position,position+front,up);
+glm::mat4 Camera::getViewMatrix() const {
+    return glm::lookAt(position, position + front, up);
 }
 void Camera::processKeyboard(GLFWwindow* window, float speed){
     front = glm::normalize(front);
