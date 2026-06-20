@@ -1,10 +1,13 @@
 #pragma once
-#include <glad/glad.h> 
-class Mesh{
+#include <glad/glad.h>
+#include <vector>
+
+class Mesh {
 public:
     GLuint VAO, VBO;
     int vertexCount;
-    Mesh(float* vertices, int count);
+    // stride: 8 floats — X Y Z  U V  NX NY NZ
+    Mesh(const std::vector<float>& vertices);
     void draw();
     ~Mesh();
 };
